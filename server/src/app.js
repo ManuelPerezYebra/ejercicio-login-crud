@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const corsOptions = require('./config/cors.config');
 const authRoutes = require('./routes/auth.routes');
 const cookieParser = require('cookie-parser');
+const usersRoutes = require('./routes/users.routes');
 
 require('dotenv').config();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 
 // Uso de rutas
 app.use('/auth', authRoutes);
+app.use('/api', usersRoutes);
 
 const startSever = async () => {
   try {

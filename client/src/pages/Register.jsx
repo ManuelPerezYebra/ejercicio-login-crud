@@ -5,7 +5,7 @@ const Register = () => {
 	const navigate = useNavigate();
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={event => handleSubmit(event, navigate)}>
 				<div>
 					<label htmlFor='username'>Username</label>
 					<input type='text' name='username' id='username' />
@@ -25,7 +25,7 @@ const Register = () => {
 	);
 };
 
-const handleSubmit = async event => {
+const handleSubmit = async (event, navigate) => {
 	event.preventDefault();
 	const { username, email, password } = event.target;
 	const newUser = {
@@ -35,5 +35,6 @@ const handleSubmit = async event => {
 	};
 	const serveMessage = await registerRequest(newUser);
 	console.log(serveMessage);
+	navigate('/login');
 };
 export default Register;

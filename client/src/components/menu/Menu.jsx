@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
+import { StyledMenu } from './menu.styles';
 
 const Menu = () => {
 	const { userData, loading } = useContext(AuthContext);
 	return (
-		<nav>
+		<StyledMenu>
 			<ul>
 				<li>
 					<Link to='/'>Home</Link>
@@ -26,7 +27,7 @@ const Menu = () => {
 					</>
 				)}
 			</ul>
-		</nav>
+		</StyledMenu>
 	);
 };
 export default Menu;

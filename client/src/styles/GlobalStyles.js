@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
   *::after,
   *::before{
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
   }
   img{
     display: block;
