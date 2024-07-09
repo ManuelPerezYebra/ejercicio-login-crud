@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
 import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 
 const ProtectedRoutes = () => {
 	const { userData, loading } = useContext(AuthContext);

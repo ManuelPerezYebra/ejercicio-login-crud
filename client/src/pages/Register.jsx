@@ -1,26 +1,32 @@
 import { useNavigate } from 'react-router-dom';
 import { registerRequest } from '../utils/auth/auth.api';
+import {
+	StyledForm,
+	StyledInputContainer,
+	StyledSubmitInput
+} from './login.styles';
+import { StyledButton } from './homeLogedIn.styles';
 
 const Register = () => {
 	const navigate = useNavigate();
 	return (
 		<>
-			<form onSubmit={event => handleSubmit(event, navigate)}>
-				<div>
+			<StyledForm onSubmit={event => handleSubmit(event, navigate)}>
+				<StyledInputContainer>
 					<label htmlFor='username'>Username</label>
 					<input type='text' name='username' id='username' />
-				</div>
-				<div>
+				</StyledInputContainer>
+				<StyledInputContainer>
 					<label htmlFor='username'>Email</label>
 					<input type='text' name='email' id='email' />
-				</div>
-				<div>
+				</StyledInputContainer>
+				<StyledInputContainer>
 					<label htmlFor='username'>Password</label>
 					<input type='text' name='password' id='password' />
-				</div>
-				<input type='submit' value='Register User' />
-			</form>
-			<button onClick={() => navigate('/')}>Go back</button>
+				</StyledInputContainer>
+				<StyledSubmitInput type='submit' value='Register User' />
+			</StyledForm>
+			<StyledButton onClick={() => navigate('/')}>Go back</StyledButton>
 		</>
 	);
 };

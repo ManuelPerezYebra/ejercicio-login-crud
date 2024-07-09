@@ -2,30 +2,49 @@ import { useContext, useEffect } from 'react';
 import { loginRequest } from '../utils/auth/auth.api';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import {
+	ButtonsContainer,
+	StyledForm,
+	StyledInputContainer,
+	StyledSubmitInput
+} from './login.styles';
+import { StyledButton } from './homeLogedIn.styles';
 
 const Login = () => {
 	const { userData, setUserData, loading } = useContext(AuthContext);
 
 	useEffect(() => {
 		if (!userData) return;
-		navigate('/');
+		navigate('/homelogedin');
 	}, [userData]);
 	if (loading) return <h1>Loading...</h1>;
 	const navigate = useNavigate();
 	return (
 		<>
-			<form onSubmit={event => handleSubmit(event, setUserData)}>
-				<div>
+			<StyledForm onSubmit={event => handleSubmit(event, setUserData)}>
+				<StyledInputContainer>
 					<label htmlFor='username'>Email</label>
-					<input type='text' name='email' id='email' />
-				</div>
-				<div>
+					<input
+						type='text'
+						name='email'
+						id='email'
+						placeholder='Indroduce tu email'
+					/>
+				</StyledInputContainer>
+				<StyledInputContainer>
 					<label htmlFor='username'>Password</label>
-					<input type='text' name='password' id='password' />
-				</div>
-				<input type='submit' value='Login User' />
-			</form>
-			<button onClick={() => navigate('/')}>Go back</button>
+					<input
+						type='password'
+						name='password'
+						id='password'
+						placeholder='Indroduce tu contraseña'
+					/>
+				</StyledInputContainer>
+				<ButtonsContainer>
+					<StyledSubmitInput type='submit' value='Login User' />
+				</ButtonsContainer>
+			</StyledForm>
+			<StyledButton onClick={() => navigate('/')}>Go back</StyledButton>
 		</>
 	);
 };

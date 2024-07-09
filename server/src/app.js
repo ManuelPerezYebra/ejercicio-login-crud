@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 // Uso de rutas
 app.use('/auth', authRoutes);
-app.use('/api', usersRoutes);
+app.use('/api/users', usersRoutes);
 
 const startSever = async () => {
   try {

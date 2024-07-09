@@ -5,6 +5,7 @@ import Register from '../pages/Register';
 import Layout from '../layouts/Layouts';
 import ProtectedRoutes from './ProtectedRoutes';
 import Profile from '../pages/Profile';
+import HomeLogedIn from '../pages//HomeLogedIn';
 
 const Router = () => {
 	return (
@@ -17,6 +18,7 @@ const Router = () => {
 
 			<Route element={<ProtectedRoutes />}>
 				<Route path='/profile' element={<Profile />} />
+				<Route path='/homelogedin' element={<HomeLogedIn />} />
 			</Route>
 		</Routes>
 	);

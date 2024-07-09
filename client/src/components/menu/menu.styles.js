@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledMenu = styled.nav`
 	margin: 5px auto;
 	width: 90vw;
-	background-color: #ffff;
+	background-color: #fff;
 	padding: 20px 0px;
 	box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.08);
 	border-radius: 10px;
@@ -16,7 +16,7 @@ const StyledMenu = styled.nav`
 		li {
 			position: relative;
 			font-weight: 500;
-			/* Estilos iniciales para ::after */
+
 			&::after {
 				content: '';
 				position: absolute;
@@ -27,13 +27,23 @@ const StyledMenu = styled.nav`
 				background-color: orange;
 				transition:
 					width 0.3s ease,
-					height 0.3s ease; /* Transición para suavizar el cambio */
+					height 0.3s ease;
 			}
 
-			/* Estilos para cuando se hace hover sobre el li */
 			&:hover::after {
 				width: 100%;
 				height: 2px;
+			}
+
+			a {
+				text-decoration: none;
+				color: inherit;
+				transition: color 0.3s;
+
+				&.active {
+					font-weight: 700; /* Estilo diferente para el enlace activo */
+					color: orange; /* Cambiar el color del texto */
+				}
 			}
 		}
 	}

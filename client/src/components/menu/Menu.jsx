@@ -1,28 +1,36 @@
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
 import { StyledMenu } from './menu.styles';
+import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
-const Menu = () => {
+const Menu = ({ $active }) => {
 	const { userData, loading } = useContext(AuthContext);
 	return (
 		<StyledMenu>
 			<ul>
 				<li>
-					<Link to='/'>Home</Link>
+					<NavLink to='/' $activestyle={$active}>
+						Home
+					</NavLink>
 				</li>
 				{userData && !loading && (
 					<li>
-						<Link to='/profile'>Profile</Link>
+						<NavLink to='/profile' $activestyle={$active}>
+							Profile
+						</NavLink>
 					</li>
 				)}
 				{!userData && !loading && (
 					<>
 						<li>
-							<Link to='/login'>Login</Link>
+							<NavLink to='/login' $activestyle={$active}>
+								Login
+							</NavLink>
 						</li>
 						<li>
-							<Link to='/register'>Register</Link>
+							<NavLink to='/register' $activestyle={$active}>
+								Register
+							</NavLink>
 						</li>
 					</>
 				)}
