@@ -40,18 +40,19 @@ const Profile = () => {
 			}
 		};
 		fetchUsers();
-	}, []);
+	}, [userData]);
 
 	if (loading) return <h1>Loading...</h1>;
 	if (users.length === 0) return <h1>No users found.</h1>;
-
 	return (
 		<>
 			<LogedInContainerInfo>
 				<h1>Has iniciado sesión como {userData.username}</h1>
 			</LogedInContainerInfo>
 			<ButtonContainer>
-				<StyledButton onClick={() => navigate('/')}>Go Back</StyledButton>
+				<StyledButton onClick={() => navigate('/Profile')}>
+					Profile
+				</StyledButton>
 				<Logout />
 			</ButtonContainer>
 
@@ -86,7 +87,15 @@ const Profile = () => {
 			{visible && (
 				<StyledForm
 					onSubmit={e => {
-						handleEdit(e, userData.id, newUsername, setUsers, setVisible);
+						handleEdit(
+							e,
+							userData.id,
+							newUsername,
+							setUsers,
+							setVisible,
+							setUserData,
+							userData
+						);
 					}}
 				>
 					<StyledInputContainer>
@@ -123,9 +132,16 @@ const handleDelete = async (id, setUsers, navigate, setUserData) => {
 	navigate('/');
 };
 
-const handleEdit = async (event, id, newUsername, setUsers, setVisible) => {
+const handleEdit = async (
+	event,
+	id,
+	newUsername,
+	setUsers,
+	setVisible,
+	setUserData,
+	userData
+) => {
 	event.preventDefault();
-	console.log(newUsername);
 	console.log(id);
 	try {
 		const updatedUser = await patchData(`${URLS.API_USERS}/${id}`, {
@@ -136,7 +152,18 @@ const handleEdit = async (event, id, newUsername, setUsers, setVisible) => {
 	} catch (error) {
 		console.error(error);
 	}
+	console.log(userData.id);
+	console.log(userData.username);
+	console.log(id);
+
+	setUserData({
+		email: userData.email,
+		id: userData.id,
+		username: newUsername
+	});
+	console.log(userData.username);
 	setVisible(false);
+	// window.location.replace('');
 };
 
 export default Profile;

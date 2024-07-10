@@ -15,11 +15,19 @@ export const postData = async (url, body = {}) => {
 	return data;
 };
 
-export const patchData = async url => {
-	const data = await fetchData(url, {
-		method: METHODS.PATCH
-	});
-	return data;
+export const patchData = async (url, data) => {
+	try {
+		const response = await fetch(url, {
+			method: METHODS.PATCH,
+			headers: HEADERS,
+			body: JSON.stringify(data)
+		});
+		const result = await response.json();
+		return result;
+	} catch (err) {
+		console.error('Error during patchData:', err);
+		throw err;
+	}
 };
 export const deleteData = async url => {
 	const data = await fetchData(url, {
