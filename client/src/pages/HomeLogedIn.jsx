@@ -118,7 +118,6 @@ const Profile = () => {
 
 const visibleEditForm = (visible, setVisible) => {
 	setVisible(!visible);
-	console.log(visible);
 };
 const handleDelete = async (id, setUsers, navigate, setUserData) => {
 	try {
@@ -142,26 +141,20 @@ const handleEdit = async (
 	userData
 ) => {
 	event.preventDefault();
-	console.log(id);
 	try {
 		const updatedUser = await patchData(`${URLS.API_USERS}/${id}`, {
 			username: newUsername
 		});
 		setUsers(updatedUser);
-		console.log(updatedUser);
 	} catch (error) {
 		console.error(error);
 	}
-	console.log(userData.id);
-	console.log(userData.username);
-	console.log(id);
 
 	setUserData({
 		email: userData.email,
 		id: userData.id,
 		username: newUsername
 	});
-	console.log(userData.username);
 	setVisible(false);
 	// window.location.replace('');
 };

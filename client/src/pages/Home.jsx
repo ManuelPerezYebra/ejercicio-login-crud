@@ -15,7 +15,6 @@ const Home = () => {
 	useEffect(() => {
 		getUsers(setUsers);
 	}, []);
-	console.log(users);
 	if (users.length === 0 && !loading) return <h1>Loading...</h1>;
 
 	return (
