@@ -156,7 +156,6 @@ const handleEdit = async (
 		username: newUsername
 	});
 	setVisible(false);
-	// window.location.replace('');
 };
 
 export default Profile;

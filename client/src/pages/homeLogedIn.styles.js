@@ -25,12 +25,12 @@ const StyledButton = styled.button`
 	background-color: orange;
 	border-radius: 10px;
 	color: white;
-	width: 100%;
-
+	width: 90%;
 	padding: 15px 0px;
 	font-size: 20px;
 	font-weight: 700;
 	box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.08);
+	margin: 0px 20px 0px 20px;
 `;
 
 export { LogedInContainerInfo, StyledButton, ButtonContainer };
