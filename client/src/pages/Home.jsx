@@ -2,9 +2,12 @@ import { useEffect, useState, useContext } from 'react';
 import { URLS } from '../constants/urls';
 import { getData } from '../../src/utils/api';
 import {
+	Email,
 	MainContainer,
+	ProfilePhotoContainer,
 	StyledActionIconsContainer,
-	StyledUserContainer
+	StyledUserContainer,
+	Username
 } from './home.styles';
 import { AuthContext } from '../contexts/AuthContext';
 
@@ -23,8 +26,18 @@ const Home = () => {
 				{users.map(user => (
 					<div key={user._id}>
 						<StyledUserContainer>
-							<p>{user.username}</p>
-							<p>{user.email}</p>
+							<ProfilePhotoContainer $color={user.color}>
+								{!user.image && (
+									<h1>{user.username.charAt(0).toUpperCase()}</h1>
+								)}
+								{user.image && <img src={user.image} alt='' />}
+							</ProfilePhotoContainer>
+
+							<Username>
+								{user.username.charAt(0).toUpperCase() +
+									user.username.slice(1).toLowerCase()}
+							</Username>
+							<Email>{user.email}</Email>
 							{loggedInUser && user._id === loggedInUser._id && (
 								<StyledActionIconsContainer>
 									<img src='../../public/edit-icon.svg' alt='Edit' />

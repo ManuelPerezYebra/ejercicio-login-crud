@@ -9,6 +9,7 @@ import { StyledButton } from './homeLogedIn.styles';
 
 const Register = () => {
 	const navigate = useNavigate();
+
 	return (
 		<>
 			<StyledForm onSubmit={event => handleSubmit(event, navigate)}>
@@ -41,6 +42,8 @@ const handleSubmit = async (event, navigate) => {
 	};
 	const serveMessage = await registerRequest(newUser);
 	console.log(serveMessage);
+
 	navigate('/login');
 };
+
 export default Register;

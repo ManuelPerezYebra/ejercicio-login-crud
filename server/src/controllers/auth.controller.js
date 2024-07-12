@@ -8,13 +8,21 @@ const authController = {};
 
 authController.register = async (req, res) => {
   const { username, email, password } = req.body;
+
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+
+  const randomColor = `rgb(${r}, ${g}, ${b})`;
+
   try {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     const newUser = new UserModel({
       username,
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      color: randomColor
     });
     await newUser.save();
     res.status(201).send({ message: 'User registered' });
@@ -43,7 +51,9 @@ authController.login = async (req, res) => {
     return res.cookie('token', token).send({
       id: userFound._id,
       username: userFound.username,
-      email: userFound.email
+      email: userFound.email,
+      color: userFound.color,
+      image: userFound.image
     });
   } catch (error) {
     return res.status(500).send({ error: error.message });
@@ -67,7 +77,8 @@ authController.verifyToken = async (req, res) => {
     return res.status(200).send({
       id: userFound._id,
       username: userFound.username,
-      email: userFound.email
+      email: userFound.email,
+      image: userFound.image
     });
   } catch (error) {
     console.log(error);

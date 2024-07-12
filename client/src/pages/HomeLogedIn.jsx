@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 
 import {
 	MainContainer,
+	ProfilePhotoContainer,
 	StyledActionIconsContainer,
 	StyledUserContainer
 } from './home.styles';
@@ -47,7 +48,11 @@ const Profile = () => {
 	return (
 		<>
 			<LogedInContainerInfo>
-				<h1>Has iniciado sesión como {userData.username}</h1>
+				<h1>
+					Has iniciado sesión como{' '}
+					{userData.username.charAt(0).toUpperCase() +
+						userData.username.slice(1).toLowerCase()}
+				</h1>
 			</LogedInContainerInfo>
 			<ButtonContainer>
 				<StyledButton onClick={() => navigate('/Profile')}>
@@ -60,8 +65,16 @@ const Profile = () => {
 				{users.map(user => (
 					<div key={user._id}>
 						<StyledUserContainer>
-							<p>{user.username}</p>
-							<p>{user.email}</p>
+							<ProfilePhotoContainer $color={user.color}>
+								{!user.image && (
+									<h1>{user.username.charAt(0).toUpperCase()}</h1>
+								)}
+								{user.image && <img src={user.image} alt='' />}
+							</ProfilePhotoContainer>
+							<p>
+								{user.username.charAt(0).toUpperCase() +
+									user.username.slice(1).toLowerCase()}
+							</p>
 							{user.username === userData.username && (
 								<StyledActionIconsContainer>
 									<img
